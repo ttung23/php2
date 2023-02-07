@@ -1,0 +1,16 @@
+{
+    "name": "sumaytinh0912350956/assignment",
+    "authors": [
+        {
+            "name": "Nguyen Tien Tung",
+            "email": "ntt091103@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "App\\": "./"
+        }
+    },
+    "require": {}
+}
