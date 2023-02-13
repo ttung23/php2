@@ -1,0 +1,4 @@
+<?php echo $this->runChild('layout.head'); ?>
+<?php echo $this->runChild('layout.side'); ?>
+<?php echo $this->runChild('layout.main'); ?>
+<?php echo $this->runChild('layout.footer'); ?>
