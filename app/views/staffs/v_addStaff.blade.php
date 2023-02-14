@@ -26,13 +26,13 @@
             </td>
         </tr>
 
-        <!-- <tr>
+        <tr>
             <td><label for="image_staff">Ảnh nhân viên</label></td>
             <td><input name="image_staff" id="image_staff" type="file"></td>
-            <?php //if (isset($err['image_staff'])) { ?>
-                <td class="error text-red-500"><?//= $err['image_staff'] ?></td>
-            <?php // } ?>
-        </tr> -->
+            @isset($_SESSION['err']['image_staff'])
+                <td class="error text-red-500">{{$_SESSION['err']['image_staff']}}</td>
+            @endisset
+        </tr>
 
         <tr>
             <td><label for="address_staff">Địa chỉ nhân viên</label></td>
@@ -71,7 +71,7 @@
 
         <tr>
             <td class="text-right" colspan="2">
-                <a href="?url=listStaffs">Danh sách nhân viên</a>
+                <a href="listStaffs">Danh sách nhân viên</a>
             </td>
         </tr>
     </table>

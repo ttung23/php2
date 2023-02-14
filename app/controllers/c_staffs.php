@@ -15,8 +15,6 @@ class c_staffs extends BaseController {
         $staffs = $this->m_staffs->loadAllStaffs();
 
         // $title = "Danh sách nhân viên";
-        // $view = "./app/views/staffs/v_listStaffs.php";
-        // include "./templates/layout.php";
         $this->render("staffs.v_listStaffs", compact("staffs"));
     }
 
@@ -28,15 +26,9 @@ class c_staffs extends BaseController {
             $phone_staff = $_POST['phone_staff'];
             $salary = $_POST['salary'];
             $so_gio_lam = 0;
-
-            $image_name = 'tung2.png';
             
-            // $image_staff = $_FILES['image_staff'];
-            // $image_name = $image_staff['name'];
-
-            // var_dump(is_string($phone_staff)) ;
-            // echo strlen($phone_staff);
-            // exit;
+            $image_staff = $_FILES['image_staff'];
+            $image_name = $image_staff['name'];
 
             deleteSession();
             $err = [];
@@ -61,22 +53,22 @@ class c_staffs extends BaseController {
                 $err['salary'] = "Lương của nhân viên phải lớn hơn hoặc bằng 10k/h";
             }
 
-            // $image_name = $image_staff['name'];
-            // $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            $image_name = $image_staff['name'];
+            $ext = pathinfo($image_name, PATHINFO_EXTENSION);
 
-            // if ($image_staff['size'] <= 0) {
-            //     $err['image_staff'] = "Bạn chưa chọn ảnh";
-            // } else if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-            //     $err['image_staff'] = 'Ảnh không đúng định dạng';
-            // } else if ($image_staff['size'] >= 2 * 1024 * 1024) {
-            //     $err['image_staff'] = 'Ảnh không được quá 2MB';
-            // }
+            if ($image_staff['size'] <= 0) {
+                $err['image_staff'] = "Bạn chưa chọn ảnh";
+            } else if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+                $err['image_staff'] = 'Ảnh không đúng định dạng';
+            } else if ($image_staff['size'] >= 2 * 1024 * 1024) {
+                $err['image_staff'] = 'Ảnh không được quá 2MB';
+            }
 
             if (count($err) > 0) {
                 $_SESSION['err'] = $err;
             } else {
                 $this->m_staffs->addStaff($name_staff, $gender, $image_name, $address_staff, $phone_staff, $salary, $so_gio_lam);
-                // move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
+                move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
                 deleteSession();
                 header("location: listStaffs");
             }
@@ -94,17 +86,14 @@ class c_staffs extends BaseController {
         if (isset($_POST['btn_editStaff'])) {
             $name_staff = $_POST['name_staff'];
             $gender = $_POST['gender'];
-            // $image_name = $_POST['image_staff'];
+            $image_name = $_POST['image_staff'];
             $address_staff = $_POST['address_staff'];
             $phone_staff = $_POST['phone_staff'];
             $salary = $_POST['salary'];
             $so_gio_lam = $_POST['so_gio_lam'];
 
-            $image_name = "tung2.png";
-
-            // $image_staff = $_FILES['image_staff'];
-
-            // echo $gender;
+            $image_staff = $_FILES['image_staff'];
+            // var_dump($image_staff);
             // exit;
 
             deleteSession();
@@ -134,32 +123,30 @@ class c_staffs extends BaseController {
                 $err['so_gio_lam'] = "Bạn chưa nhập số giờ làm cho nhân viên";
             }
 
-            // if ($image_staff['size'] > 0) {
-            //     $image_name = $image_staff['name'];
-            //     $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            if ($image_staff['size'] > 0) {
+                $image_name = $image_staff['name'];
+                $ext = pathinfo($image_name, PATHINFO_EXTENSION);
                 
-            //     if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-            //         $err['image_staff'] = 'Ảnh không đúng định dạng';
-            //     } else if ($image_staff['size'] >= 2 * 1024 * 1024) {
-            //         $err['image_staff'] = 'Ảnh không được quá 2MB';
-            //     }
-            // }
+                if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+                    $err['image_staff'] = 'Ảnh không đúng định dạng';
+                } else if ($image_staff['size'] >= 2 * 1024 * 1024) {
+                    $err['image_staff'] = 'Ảnh không được quá 2MB';
+                }
+            }
 
             if (count($err) > 0) {
                 $_SESSION['err'] = $err;
             } else {
                 $this->m_staffs->editStaff($id, $name_staff, $gender, $image_name, $address_staff, $phone_staff, $salary, $so_gio_lam);
-                // if ($image_staff['size'] > 0) {
-                //     move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
-                // }
+                if ($image_staff['size'] > 0) {
+                    move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
+                }
                 deleteSession();
                 header("location: listStaffs");
             }
         }
 
         // $title = "Sửa thông tin nhân viên";
-        // $view = "./MVC/views/staffs/v_editStaff.php";
-        // include "./templates/layout.php";
         $this->render("staffs.v_editStaff", compact("staff"));
 
     }

@@ -31,8 +31,8 @@ class c_products extends BaseController {
             $id_cate = $_POST['id_cate'];
             $description = $_POST['description'];
             
-            // $image_product = $_FILES['image_product'];
-            // $image_name = $image_product['name'];
+            $image_product = $_FILES['image_product'];
+            $image_name = $image_product['name'];
 
             deleteSession();
             $err = [];
@@ -57,23 +57,23 @@ class c_products extends BaseController {
                 $err['description'] = "Bạn chưa nhập mô tả cho sản phẩm";
             }
 
-            // $image_name = $image_product['name'];
-            // $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            $image_name = $image_product['name'];
+            $ext = pathinfo($image_name, PATHINFO_EXTENSION);
 
-            // if ($image_product['size'] <= 0) {
-            //     $err['image_product'] = "Bạn chưa chọn ảnh";
-            // } else if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-            //     $err['image_product'] = 'Ảnh không đúng định dạng';
-            // } else if ($image_product['size'] >= 2 * 1024 * 1024) {
-            //     $err['image_product'] = 'Ảnh không được quá 2MB';
-            // }
+            if ($image_product['size'] <= 0) {
+                $err['image_product'] = "Bạn chưa chọn ảnh";
+            } else if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+                $err['image_product'] = 'Ảnh không đúng định dạng';
+            } else if ($image_product['size'] >= 2 * 1024 * 1024) {
+                $err['image_product'] = 'Ảnh không được quá 2MB';
+            }
 
             if (count($err) > 0) {
                 $_SESSION['err'] = $err;
             } else {
                 deleteSession();
-                $this->m_products->addProduct($name_product, $price_product, $quantity_product, 'tung2.png', $id_cate, $description);
-                // move_uploaded_file($image_product['tmp_name'], "image/".'tung2.png');
+                $this->m_products->addProduct($name_product, $price_product, $quantity_product, $image_name, $id_cate, $description);
+                move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
                 header("location: listProducts");
             }
         }
@@ -93,11 +93,11 @@ class c_products extends BaseController {
             $name_product = $_POST['name_product'];
             $price_product = $_POST['price_product'];
             $quantity_product = $_POST['quantity_product'];
-            // $image_name = $_POST['image_product'];
+            $image_name = $_POST['image_product'];
             $id_cate = $_POST['id_cate'];
             $description = $_POST['description'];
             
-            // $image_product = $_FILES['image_product'];
+            $image_product = $_FILES['image_product'];
             
             deleteSession();
             $err = [];
@@ -122,24 +122,24 @@ class c_products extends BaseController {
                 $err['description'] = "Bạn chưa nhập mô tả cho sản phẩm";
             }
 
-            // if ($image_product['size'] > 0) {
-            //     $image_name = $image_product['name'];
-            //     $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            if ($image_product['size'] > 0) {
+                $image_name = $image_product['name'];
+                $ext = pathinfo($image_name, PATHINFO_EXTENSION);
                 
-            //     if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-            //         $err['image_product'] = 'Ảnh không đúng định dạng';
-            //     } else if ($image_product['size'] >= 2 * 1024 * 1024) {
-            //         $err['image_product'] = 'Ảnh không được quá 2MB';
-            //     }
-            // }
+                if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+                    $err['image_product'] = 'Ảnh không đúng định dạng';
+                } else if ($image_product['size'] >= 2 * 1024 * 1024) {
+                    $err['image_product'] = 'Ảnh không được quá 2MB';
+                }
+            }
 
             if (count($err) > 0) {
                 $_SESSION['err'] = $err;
             } else {
-                $this->m_products->editProduct($id, $name_product, $price_product, $quantity_product, 'tung2.png', $id_cate, $description);
-                // if ($image_product['size'] > 0) {
-                //     move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
-                // }
+                $this->m_products->editProduct($id, $name_product, $price_product, $quantity_product, $image_name, $id_cate, $description);
+                if ($image_product['size'] > 0) {
+                    move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
+                }
                 deleteSession();
                 header("location: listProducts");
             }

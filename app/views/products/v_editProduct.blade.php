@@ -11,58 +11,58 @@
             <td><label for="name_product">Tên sản phẩm</label></td>
             <td>
                 <input name="name_product" id="name_product" 
-                value="<?= $product->name_product ?>" type="text">
+                value="{{$product->name_product}}" type="text">
             </td>
-            <?php if (isset($err['name_product'])) { ?>
-                <td class="text-red-500"><?= $err['name_product'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['name_product'])
+                <td class="error text-red-500">{{$_SESSION['err']['name_product']}}</td>
+            @endisset
         </tr>
 
         <tr>
             <td><label for="price_product">Giá sản phẩm</label></td>
             <td>
                 <input name="price_product" id="price_product" type="text"
-                value="<?= $product->price ?>">
+                value="{{$product->price}}">
             </td>
-            <?php if (isset($err['price_product'])) { ?>
-                <td class="text-red-500"><?= $err['price_product'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['price_product'])
+                <td class="error text-red-500">{{$_SESSION['err']['price_product']}}</td>
+            @endisset
         </tr>
 
         <tr>
             <td><label for="quantity_product">Số lượng sản phẩm</label></td>
             <td>
                 <input name="quantity_product" id="quantity_product" type="text"
-                value="<?= $product->quantity ?>">
+                value="{{$product->quantity}}">
             </td>
-            <?php if (isset($err['quantity_product'])) { ?>
-                <td class="text-red-500"><?= $err['quantity_product'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['quantity_product'])
+                <td class="error text-red-500">{{$_SESSION['err']['quantity_product']}}</td>
+            @endisset
         </tr>
 
         <tr>
             <td><label for="image_product">Ảnh hiện tại</label></td>
             <td>
-                <img src="image/<?= $product->image ?>" width="100" alt="">
-                <input type="hidden" value="<?= $product->image ?>" name="image_product" id="">
+                <img src="image/{{$product->image}}" width="100" alt="">
+                <input type="hidden" value="{{$product->image}}" name="image_product" id="">
             </td>
         </tr>
 
-        <!-- <tr>
+        <tr>
             <td><label for="image_product">Chọn ảnh khác</label></td>
             <td><input name="image_product" id="image_product" type="file"></td>
-            <?php //if (isset($err['image_product'])) { ?>
-                <td class="text-red-500"><?//= $err['image_product'] ?></td>
-            <?php //} ?>
-        </tr> -->
+            @isset($_SESSION['err']['image_product'])
+                <td class="error text-red-500">{{$_SESSION['err']['image_product']}}</td>
+            @endisset
+        </tr>
         
         <tr>
             <td><label for="id_cate">Danh mục</label></td>
             <td>
                 <select name="id_cate" id="id_cate">
-                    <?php foreach($categories as $value) { ?>
-                        <option <?= $product->id_cate == $value->id ? "selected" : "" ?> value="<?= $value->id ?>"><?= $value->name_cate ?></option>
-                    <?php } ?>
+                    @foreach($categories as $value)
+                        <option {{$product->id_cate == $value->id ? "selected" : ""}} value="{{$value->id}}">{{$value->name_cate}}</option>
+                    @endforeach
                 </select>
             </td>
         </tr>
@@ -73,9 +73,9 @@
                 <textarea name="description" id="description" 
                 cols="30" rows="10"><?= $product->description ?></textarea>
             </td>
-            <?php if (isset($err['description'])) { ?>
-                <td class="text-red-500"><?= $err['description'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['description'])
+                <td class="error text-red-500">{{$_SESSION['err']['description']}}</td>
+            @endisset
         </tr>
 
         <tr>

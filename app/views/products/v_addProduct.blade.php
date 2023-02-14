@@ -2,13 +2,6 @@
 
 @section('main')
 
-<?php
-    // echo "<pre>";
-    // echo $_SESSION['err']['name_product'];
-    // var_dump($_SESSION);
-    // exit;
-?>
-
 <form action="{{ BASE_URL.'form-add-product' }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
@@ -41,13 +34,13 @@
             @endisset
         </tr>
 
-        <!-- <tr>
+        <tr>
             <td><label for="image_product">Ảnh sản phẩm</label></td>
             <td><input name="image_product" id="image_product" type="file"></td>
-            <?php //if (isset($err['image_product'])) { ?>
-                <td class="error text-red-500"><?//= $err['image_product'] ?></td>
-            <?php //} ?>
-        </tr> -->
+            @isset($_SESSION['err']['image_product'])
+                <td class="error text-red-500">{{$_SESSION['err']['image_product']}}</td>
+            @endisset
+        </tr>
         
         <tr>
             <td><label for="id_cate">Danh mục</label></td>
