@@ -25,21 +25,23 @@ class c_categories extends BaseController {
 
         if (isset($_POST['btn_addCategory'])) {
             $name_cate = $_POST['name_cate'];
+            deleteSession();
             $err = [];
 
             if ($name_cate == "") {
                 $err['name_cate'] = "Bạn chưa nhập tên danh mục";
             }
 
-            if (empty($err)) {
+            if (count($err) > 0) {
+                $_SESSION['err'] = $err;
+            } else {
                 $this->m_categories->addCategory($name_cate);
+                deleteSession();
                 header("location: listCategories");
             }
         }
 
         // $title = "Thêm danh mục";
-        // $view = "./MVC/views/categories/v_addCategory.php";
-        // include "./templates/layout.php";
         $this->render("categories.v_addCategory");
     }
 
@@ -63,8 +65,6 @@ class c_categories extends BaseController {
         }
 
         // $title = "Sửa thông tin danh mục";
-        // $view = "./MVC/views/categories/v_editCategory.php";
-        // include "./templates/layout.php";
         $this->render("categories.v_editCategory", compact('category'));
     }
 

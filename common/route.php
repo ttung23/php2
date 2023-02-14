@@ -18,25 +18,42 @@ $router->filter('auth', function(){
 // PRODUCTS
 $router->get('/', [App\Controllers\c_products::class, 'list_products']);
 $router->get('listProducts', [App\Controllers\c_products::class, 'list_products']);
+
 $router->get('addProduct', [App\Controllers\c_products::class, 'add_product']);
+$router->post('form-add-product', [App\Controllers\c_products::class, 'add_product']);
+
 $router->get('editProduct', [App\Controllers\c_products::class, 'edit_product']);
+$router->post('form-edit-product', [App\Controllers\c_products::class, 'edit_product']);
+
 $router->get('deleteProduct', [App\Controllers\c_products::class, 'delete_product']);
 
 // CATEGORIES
 $router->get('listCategories', [App\Controllers\c_categories::class, 'list_categories']);
 $router->get('addCategory', [App\Controllers\c_categories::class, 'add_category']);
+$router->post('form-add-category', [App\Controllers\c_categories::class, 'add_category']);
+
 $router->get('editCategory', [App\Controllers\c_categories::class, 'edit_category']);
+$router->post('form-edit-category', [App\Controllers\c_categories::class, 'edit_category']);
+
 $router->get('deleteCategory', [App\Controllers\c_categories::class, 'delete_category']);
 
 // STAFFS
 $router->get('listStaffs', [App\Controllers\c_staffs::class, 'list_staffs']);
+
 $router->get('addStaff', [App\Controllers\c_staffs::class, 'add_staff']);
+$router->post('form-add-staff', [App\Controllers\c_staffs::class, 'add_staff']);
+
 $router->get('editStaff', [App\Controllers\c_staffs::class, 'edit_staff']);
+$router->post('form-edit-staff', [App\Controllers\c_staffs::class, 'edit_staff']);
+
 $router->get('deleteStaff', [App\Controllers\c_staffs::class, 'delete_staff']);
 
 // USERS
 $router->get('listUsers', [App\Controllers\c_users::class, 'list_users']);
+
 $router->get('editUser', [App\Controllers\c_users::class, 'edit_user']);
+$router->post('form-edit-user', [App\Controllers\c_users::class, 'edit_user']);
+
 $router->get('deleteUser', [App\Controllers\c_users::class, 'delete_user']);
 
 // COMMENTS

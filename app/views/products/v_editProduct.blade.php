@@ -2,7 +2,7 @@
 
 @section('main')
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{ BASE_URL.'form-edit-product&id_product='.$product->id }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Sửa thông tin sản phẩm</td>
@@ -48,13 +48,13 @@
             </td>
         </tr>
 
-        <tr>
+        <!-- <tr>
             <td><label for="image_product">Chọn ảnh khác</label></td>
             <td><input name="image_product" id="image_product" type="file"></td>
-            <?php if (isset($err['image_product'])) { ?>
-                <td class="text-red-500"><?= $err['image_product'] ?></td>
-            <?php } ?>
-        </tr>
+            <?php //if (isset($err['image_product'])) { ?>
+                <td class="text-red-500"><?//= $err['image_product'] ?></td>
+            <?php //} ?>
+        </tr> -->
         
         <tr>
             <td><label for="id_cate">Danh mục</label></td>

@@ -20,33 +20,36 @@
         <th>Thao tác</th>
     </tr>
 
-    <?php foreach ($products as $value) { ?>
+    @foreach ($products as $value)
         <tr>
-            <td><?= $value->id ?></td>
-            <td><?= $value->name_product ?></td>
-            <td><?= number_format($value->price, 0, ",", ".") ?></td>
-            <td><?= $value->quantity ?></td>
-            <td><img width="100" src="image/<?= $value->image ?>" alt=""></td>
-            <td><?php if ($value->id_cate == 1) {
-                echo "Điện thoại";
-            } elseif ($value->id_cate == 2) {
-                echo "Máy tính";
-            }
-            ?></td>
-            <td><?= $value->description ?></td>
-            <td><?= $value->created_time ?></td>
-            <td><?= $value->updated_time ?></td>
+            <td>{{$value->id}}</td>
+            <td>{{$value->name_product}}</td>
+            <td>{{number_format($value->price, 0, ",", ".")}}</td>
+            <td>{{$value->quantity}}</td>
+            <td><img width="100" src="./image/{{$value->image}}" alt=""></td>
             <td>
-                <a href="?url=editProduct&id_product=<?= $value->id ?>">Sửa</a>
-                <a class="float-right" href="?url=deleteProduct&id_product=<?= $value->id ?>" 
-                onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm <?= $value->name_product ?>')"
+            @php
+                if ($value->id_cate == 1) {
+                    echo "Điện thoại";
+                } elseif ($value->id_cate == 2) {
+                    echo "Máy tính";
+                }
+            @endphp
+            </td>
+            <td>{{$value->description}}</td>
+            <td>{{$value->created_time}}</td>
+            <td>{{$value->updated_time}}</td>
+            <td>
+                <a href="editProduct&id_product={{$value->id}}">Sửa</a>
+                <a class="float-right" href="deleteProduct&id_product={{$value->id}}" 
+                onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm {{$value->name_product}}')"
                 >Xóa</a>
             </td>
         </tr>
-    <?php } ?>
+    @endforeach
 
     <tr>
-        <td class="text-center" colspan="10">Tổng số sản phẩm: <?= count($products) ?></td>
+        <td class="text-center" colspan="10">Tổng số sản phẩm: {{count($products)}}</td>
     </tr>
 
     <tr>

@@ -28,11 +28,13 @@ class c_users extends BaseController {
         if (isset($_POST['btn_editUser'])) {
             $name_user = $_POST['name_user'];
             $gender = $_POST['gender'];
-            $image_name = $_POST['image_user'];
+            // $image_name = $_POST['image_user'];
             $address_user = $_POST['address_user'];
             $phone_user = $_POST['phone_user'];
 
-            $image_user = $_FILES['image_user'];
+            $image_name = "tung2.png";
+
+            // $image_user = $_FILES['image_user'];
 
             // echo $gender;
             // exit;
@@ -53,22 +55,29 @@ class c_users extends BaseController {
                 $err['phone_user'] = "Số điện thoại của khách hàng phải có 10 số";
             }
 
-            if ($image_user['size'] > 0) {
-                $image_name = $image_user['name'];
-                $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+            // if ($image_user['size'] > 0) {
+            //     $image_name = $image_user['name'];
+            //     $ext = pathinfo($image_name, PATHINFO_EXTENSION);
                 
-                if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
-                    $err['image_user'] = 'Ảnh không đúng định dạng';
-                } else if ($image_user['size'] >= 2 * 1024 * 1024) {
-                    $err['image_user'] = 'Ảnh không được quá 2MB';
-                }
-            }
+            //     if ($ext != 'png' && $ext != 'jpg' && $ext != 'jpeg') {
+            //         $err['image_user'] = 'Ảnh không đúng định dạng';
+            //     } else if ($image_user['size'] >= 2 * 1024 * 1024) {
+            //         $err['image_user'] = 'Ảnh không được quá 2MB';
+            //     }
+            // }
 
             if (empty($err)) {
+                
+            }
+
+            if (count($err) > 0) {
+                $_SESSION['err'] = $err;
+            } else {
                 $this->m_users->editUser($id, $name_user, $gender, $image_name, $address_user, $phone_user);
-                if ($image_user['size'] > 0) {
-                    move_uploaded_file($image_user['tmp_name'], "image/".$image_name);
-                }
+                // if ($image_user['size'] > 0) {
+                //     move_uploaded_file($image_user['tmp_name'], "image/".$image_name);
+                // }
+                deleteSession();
                 header("location: listUsers");
             }
         }

@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('main')
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{ BASE_URL.'form-add-category' }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Thêm danh mục</td>
@@ -10,9 +10,9 @@
             <td><label for="name_cate">Tên danh mục</label></td>
             <td><input name="name_cate" id="name_cate" type="text"
             value="<?= $_POST['name_cate'] ?? "" ?>"></td>
-            <?php if (isset($err['name_cate'])) { ?>
-                <td class="error text-red-500"><?= $err['name_cate'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['name_cate'])
+                <td class="error text-red-500">{{$_SESSION['err']['name_cate']}}</td>
+            @endisset
         </tr>
 
         <tr>

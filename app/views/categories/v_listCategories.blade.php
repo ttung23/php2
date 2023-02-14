@@ -30,7 +30,7 @@
     @endforeach
 
     <tr>
-        <td class="text-center" colspan="10">Tổng số danh mục: <?= count($categories) ?></td>
+        <td class="text-center" colspan="10">Tổng số danh mục: {{count($categories)}}</td>
     </tr>
 
     <tr>

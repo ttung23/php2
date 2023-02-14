@@ -2,7 +2,7 @@
 
 <?php $this->startSection('main'); ?>
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="<?php echo \htmlentities(BASE_URL.'form-edit-user&id_user='.$user->id??'', ENT_QUOTES, 'UTF-8', false); ?>" method="post" enctype="multipart/form-data">
  <table class="mx-auto">
  <tr>
  <td colspan="2" class="text-center font-bold">Sửa thông tin khách hàng</td>
@@ -13,9 +13,9 @@
  <input name="name_user" id="name_user" 
  value="<?= $user->name ?>" type="text">
  </td>
- <?php if (isset($err['name_user'])) { ?>
- <td class="error text-red-500"><?= $err['name_user'] ?></td>
- <?php } ?>
+ <?php if(isset($_SESSION['err']['name_user'])): ?>
+ <td class="error text-red-500"><?php echo \htmlentities($_SESSION['err']['name_user']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php endif; ?>
  </tr>
 
  <tr>
@@ -36,13 +36,13 @@
  </td>
  </tr>
 
- <tr>
+ <!-- <tr>
  <td><label for="image_user">Chọn ảnh khác</label></td>
  <td><input name="image_user" id="image_user" type="file"></td>
- <?php if (isset($err['image_user'])) { ?>
- <td class="error text-red-500"><?= $err['image_user'] ?></td>
- <?php } ?>
- </tr>
+ <?php if(isset($err['image_user'])): ?>) { ?>
+ <td class="error text-red-500"><?//= $err['image_user'] ?></td>
+ <?php endif; ?>
+ </tr> -->
 
  <tr>
  <td><label for="address_user">Địa chỉ khách hàng</label></td>
@@ -50,9 +50,9 @@
  <input name="address_user" id="address_user" type="text"
  value="<?= $user->address ?>">
  </td>
- <?php if (isset($err['address_user'])) { ?>
- <td class="error text-red-500"><?= $err['address_user'] ?></td>
- <?php } ?>
+ <?php if(isset($_SESSION['err']['address_user'])): ?>
+ <td class="error text-red-500"><?php echo \htmlentities($_SESSION['err']['address_user']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php endif; ?>
  </tr>
 
  <tr>
@@ -61,9 +61,9 @@
  <input name="phone_user" id="phone_user" type="text"
  value="<?= $user->phone ?>">
  </td>
- <?php if (isset($err['phone_user'])) { ?>
- <td class="error text-red-500"><?= $err['phone_user'] ?></td>
- <?php } ?>
+ <?php if(isset($_SESSION['err']['phone_user'])): ?>
+ <td class="error text-red-500"><?php echo \htmlentities($_SESSION['err']['phone_user']??'', ENT_QUOTES, 'UTF-8', false); ?></td>
+ <?php endif; ?>
  </tr>
 
  <tr>
@@ -76,7 +76,7 @@
 
  <tr>
  <td class="text-right" colspan="2">
- <a href="?url=listUsers">Danh sách khách hàng</a>
+ <a href="listUsers">Danh sách khách hàng</a>
  </td>
  </tr>
  </table>

@@ -2,7 +2,7 @@
 
 @section('main')
 
-<form action="" method="post" enctype="multipart/form-data">
+<form action="{{ BASE_URL.'form-edit-staff&id_staff='.$staff->id }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Sửa thông tin nhân viên</td>
@@ -13,9 +13,9 @@
                 <input name="name_staff" id="name_staff" 
                 value="<?= $staff->name ?>" type="text">
             </td>
-            <?php if (isset($err['name_staff'])) { ?>
-                <td class="error text-red-500"><?= $err['name_staff'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['name_staff'])
+                <td class="error text-red-500">{{$_SESSION['err']['name_staff']}}</td>
+            @endisset
         </tr>
 
         <tr>
@@ -36,13 +36,13 @@
             </td>
         </tr>
 
-        <tr>
+        <!-- <tr>
             <td><label for="image_user">Chọn ảnh khác</label></td>
             <td><input name="image_user" id="image_user" type="file"></td>
-            <?php if (isset($err['image_user'])) { ?>
-                <td class="error text-red-500"><?= $err['image_user'] ?></td>
-            <?php } ?>
-        </tr>
+            <?php //if (isset($err['image_user'])) { ?>
+                <td class="error text-red-500"><?//= $err['image_user'] ?></td>
+            <?php //} ?>
+        </tr> -->
 
         <tr>
             <td><label for="address_staff">Địa chỉ nhân viên</label></td>
@@ -50,9 +50,9 @@
                 <input name="address_staff" id="address_staff" type="text"
                 value="<?= $staff->address ?>">
             </td>
-            <?php if (isset($err['address_staff'])) { ?>
-                <td class="error text-red-500"><?= $err['address_staff'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['address_staff'])
+                <td class="error text-red-500">{{$_SESSION['err']['address_staff']}}</td>
+            @endisset
         </tr>
 
         <tr>
@@ -61,9 +61,9 @@
                 <input name="phone_staff" id="phone_staff" type="text"
                 value="<?= $staff->phone ?>">
             </td>
-            <?php if (isset($err['phone_staff'])) { ?>
-                <td class="error text-red-500"><?= $err['phone_staff'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['phone_staff'])
+                <td class="error text-red-500">{{$_SESSION['err']['phone_staff']}}</td>
+            @endisset
         </tr>
 
         <tr>
@@ -72,9 +72,9 @@
                 <input type="number" name="salary" id="salary"
                 value="<?= $staff->salary ?>">
             </td>
-            <?php if (isset($err['salary'])) { ?>
-                <td class="error text-red-500"><?= $err['salary'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['salary'])
+                <td class="error text-red-500">{{$_SESSION['err']['salary']}}</td>
+            @endisset
         </tr>
 
         <tr>
@@ -83,9 +83,9 @@
                 <input type="number" min="0" name="so_gio_lam" id="so_gio_lam"
                 value="<?= $staff->so_gio_lam ?>">
             </td>
-            <?php if (isset($err['so_gio_lam'])) { ?>
-                <td class="error text-red-500"><?= $err['so_gio_lam'] ?></td>
-            <?php } ?>
+            @isset($_SESSION['err']['so_gio_lam'])
+                <td class="error text-red-500">{{$_SESSION['err']['so_gio_lam']}}</td>
+            @endisset
         </tr>
 
         <tr>
