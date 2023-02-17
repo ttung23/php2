@@ -16,14 +16,15 @@ class c_comments extends BaseController {
         // $title = "Danh sách bình luận";
         // $view = "./app/views/cmt/v_listComments.php";
         // include "./templates/layout.php";
+        $_SESSION['title'] = "Danh sách bình luận";
         $this->render('cmt.v_listComments', compact('comments'));
     }
 
-    public function delete_cmt () {
-        $id = $_GET['id_commnet'];
+    public function delete_cmt ($id) {
 
         $this->m_comments->deleteComment($id);
-        header("location: listComments");
+        // header("location: listComments");
+        redirect("success", "Xóa bình luận thành công", "listComments");
     }
 }
 ?>

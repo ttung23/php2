@@ -2,7 +2,7 @@
 
 @section('main')
 
-<form action="{{ BASE_URL.'form-add-product' }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('form-add-product') }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Thêm sản phẩm</td>

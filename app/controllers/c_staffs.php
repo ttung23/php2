@@ -15,10 +15,12 @@ class c_staffs extends BaseController {
         $staffs = $this->m_staffs->loadAllStaffs();
 
         // $title = "Danh sách nhân viên";
+        $_SESSION['title'] = "Danh sách nhân viên";
         $this->render("staffs.v_listStaffs", compact("staffs"));
     }
 
     public function add_staff () {
+        deleteSession();
         if (isset($_POST['btn_addStaff'])) {
             $name_staff = $_POST['name_staff'];
             $gender = $_POST['gender'];
@@ -30,7 +32,6 @@ class c_staffs extends BaseController {
             $image_staff = $_FILES['image_staff'];
             $image_name = $image_staff['name'];
 
-            deleteSession();
             $err = [];
 
             if ($name_staff == "") {
@@ -69,19 +70,20 @@ class c_staffs extends BaseController {
             } else {
                 $this->m_staffs->addStaff($name_staff, $gender, $image_name, $address_staff, $phone_staff, $salary, $so_gio_lam);
                 move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
-                deleteSession();
-                header("location: listStaffs");
+                // header("location: listStaffs");
+                redirect("success", "Thêm nhân viên thành công", "listStaffs");
             }
         }
 
         // $title = "Thêm nhân viên";
+        $_SESSION['title'] = "Thêm nhân viên";
         $this->render("staffs.v_addStaff");
 
     }
 
-    public function edit_staff () {
-        $id = $_GET['id_staff'];
+    public function edit_staff ($id) {
         $staff = $this->m_staffs->loadOneStaff($id);
+        deleteSession();
 
         if (isset($_POST['btn_editStaff'])) {
             $name_staff = $_POST['name_staff'];
@@ -96,7 +98,6 @@ class c_staffs extends BaseController {
             // var_dump($image_staff);
             // exit;
 
-            deleteSession();
             $err = [];
 
             if ($name_staff == "") {
@@ -141,21 +142,23 @@ class c_staffs extends BaseController {
                 if ($image_staff['size'] > 0) {
                     move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
                 }
-                deleteSession();
-                header("location: listStaffs");
+                
+                // header("location: listStaffs");
+                redirect("success", "Sửa thông tin nhân viên thành công", "listStaffs");
             }
         }
 
         // $title = "Sửa thông tin nhân viên";
+        $_SESSION['title'] = "Sửa thông tin nhân viên";
         $this->render("staffs.v_editStaff", compact("staff"));
 
     }
 
-    public function delete_staff () {
-        $id = $_GET['id_staff'];
+    public function delete_staff ($id) {
         $this->m_staffs->deleteStaff($id);
 
-        header("location: listStaffs");
+        // header("location: listStaffs");
+        redirect("success", "Xóa nhân viên thành công", "listStaffs");
     }
 }
 

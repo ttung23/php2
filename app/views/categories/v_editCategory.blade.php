@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('main')
-<form action="{{ BASE_URL.'form-edit-category&id_category='.$category->id }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('form-edit-category/id_category='.$category->id) }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Sửa thông tin danh mục</td>
@@ -27,7 +27,7 @@
 
         <tr>
             <td class="text-right" colspan="2">
-                <a href="listCategories">Danh sách danh mục</a>
+                <a href="{{ route('list-categories') }}">Danh sách danh mục</a>
             </td>
         </tr>
     </table>

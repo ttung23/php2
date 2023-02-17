@@ -18,12 +18,14 @@ class c_products extends BaseController {
         $products = $this->m_products->loadAllProducts();
 
         // $title = "Danh sách sản phẩm";
+        $_SESSION['title'] = "Danh sách sản phẩm";
         $this->render("products.v_listProducts", compact("products"));
     }
 
     public function add_product () {
         $categories = $this->m_categories->loadAllCategories();
 
+        deleteSession();
         if (isset($_POST['btn_addProduct'])) {
             $name_product = $_POST['name_product'];
             $price_product = $_POST['price_product'];
@@ -34,7 +36,6 @@ class c_products extends BaseController {
             $image_product = $_FILES['image_product'];
             $image_name = $image_product['name'];
 
-            deleteSession();
             $err = [];
 
             if (empty($name_product)) {
@@ -71,24 +72,24 @@ class c_products extends BaseController {
             if (count($err) > 0) {
                 $_SESSION['err'] = $err;
             } else {
-                deleteSession();
                 $this->m_products->addProduct($name_product, $price_product, $quantity_product, $image_name, $id_cate, $description);
                 move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
-                header("location: listProducts");
+                redirect("success", "Thêm sản phẩm thành công", "listProducts");
             }
         }
 
         // $title = "Thêm sản phẩm";
+        $_SESSION['title'] = "Thêm sản phẩm";
         $this->render("products.v_addProduct", compact("categories"));
     }
 
     public function postProduct () {}
 
-    public function edit_product () {
-        $id = $_GET['id_product'];
+    public function edit_product ($id) {
         $product = $this->m_products->loadOneProduct($id);
         $categories = $this->m_categories->loadAllCategories();
 
+        deleteSession();
         if (isset($_POST['btn_editProduct'])) {
             $name_product = $_POST['name_product'];
             $price_product = $_POST['price_product'];
@@ -99,7 +100,6 @@ class c_products extends BaseController {
             
             $image_product = $_FILES['image_product'];
             
-            deleteSession();
             $err = [];
 
             if ($name_product == "") {
@@ -140,20 +140,20 @@ class c_products extends BaseController {
                 if ($image_product['size'] > 0) {
                     move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
                 }
-                deleteSession();
-                header("location: listProducts");
+                // header("location: listProducts");
+                redirect("success", "Sửa thông tin sản phẩm thành công", "listProducts");
             }
         }
 
         // $title = "Sửa thông tin sản phẩm";
+        $_SESSION['title'] = "Sửa thông tin sản phẩm";
         $this->render("products.v_editProduct", compact("product", "categories"));
     }
 
-    public function delete_product () {
-        $id = $_GET['id_product'];
+    public function delete_product ($id) {
         $this->m_products->deleteProduct($id);
 
-        header("location: listProducts");
+        redirect("success", "Xóa sản phẩm thành công", "listProducts");
     }
 }
 ?>

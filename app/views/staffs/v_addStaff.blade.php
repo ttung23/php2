@@ -2,7 +2,7 @@
 
 @section('main')
 
-<form action="{{ BASE_URL.'form-add-staff' }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('form-add-staff') }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Thêm nhân viên</td>

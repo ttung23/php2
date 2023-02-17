@@ -15,14 +15,15 @@ class c_users extends BaseController {
         $users = $this->m_users->loadAllUsers();
 
         // $title = "Danh sách khách hàng";
+        $_SESSION['title'] = "Danh sách khách hàng";
         $this->render("users.v_listUsers", compact("users"));
 
     }
 
-    public function edit_user () {
-        $id = $_GET['id_user'];
+    public function edit_user ($id) {
         $user = $this->m_users->loadOneUser($id);
 
+        deleteSession();
         if (isset($_POST['btn_editUser'])) {
             $name_user = $_POST['name_user'];
             $gender = $_POST['gender'];
@@ -66,21 +67,23 @@ class c_users extends BaseController {
                 if ($image_user['size'] > 0) {
                     move_uploaded_file($image_user['tmp_name'], "image/".$image_name);
                 }
-                deleteSession();
-                header("location: listUsers");
+                
+                // header("location: listUsers");
+                redirect("success", "Sửa thông tin khách hàng thành công", "listUsers");
             }
         }
 
         // $title = "Sửa thông tin khách hàng";
+        $_SESSION['title'] = "Sửa thông tin khách hàng";
         $this->render("users.v_editUser", compact("user"));
 
     }
 
-    public function delete_user () {
-        $id = $_GET['id_user'];
+    public function delete_user ($id) {
         $this->m_users->deleteUser($id);
 
-        header("location: listUsers");
+        // header("location: listUsers");
+        redirect("success", "Xóa khách hàng thành công", "listUsers");
     }
 }
 ?>

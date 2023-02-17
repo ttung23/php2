@@ -29,8 +29,8 @@
             <td>{{$value->created_time}}</td>
             <td>{{$value->updated_time}}</td>
             <td>
-                <a href="editUser&id_user={{$value->id}}">Sửa</a>
-                <a class="float-right" href="deleteUser&id_user={{$value->id}}" 
+                <a href="editUser/id_user={{$value->id}}">Sửa</a>
+                <a class="float-right" href="deleteUser/id_user={{$value->id}}" 
                 onclick="return confirm('Bạn chắc chắn muốn xóa khách hàng {{$value->name}}')"
                 >Xóa</a>
             </td>

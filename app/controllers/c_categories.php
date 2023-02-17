@@ -13,19 +13,18 @@ class c_categories extends BaseController {
 
     public function list_categories () {
         $categories = $this->m_categories->loadAllCategories();
-        // $categories['title'] = 'Danh sách danh mục';
 
         // $title = "Danh sách danh mục";
-        // $view = "./app/views/categories/v_listCategories.php";
-        // include "./templates/layout.php";
+        $_SESSION['title'] = "Danh sách danh mục";
         $this->render("categories.v_listCategories", compact("categories"));
     }
 
     public function add_category () {
 
+        deleteSession();
         if (isset($_POST['btn_addCategory'])) {
             $name_cate = $_POST['name_cate'];
-            deleteSession();
+            
             $err = [];
 
             if ($name_cate == "") {
@@ -36,19 +35,22 @@ class c_categories extends BaseController {
                 $_SESSION['err'] = $err;
             } else {
                 $this->m_categories->addCategory($name_cate);
-                deleteSession();
-                header("location: listCategories");
+                // deleteSession();
+                // header("location: listCategories");
+
+                redirect('success', 'Thêm danh mục thành công', 'list-categories');
             }
         }
 
         // $title = "Thêm danh mục";
+        $_SESSION['title'] = "Thêm danh mục";
         $this->render("categories.v_addCategory");
     }
 
-    public function edit_category () {
-        $id = $_GET['id_category'];
+    public function edit_category ($id) {
         $category = $this->m_categories->loadOneCategory($id);
 
+        deleteSession();
         if (isset($_POST['btn_editCategory'])) {
             $name_cate = $_POST['name_cate'];
             
@@ -60,19 +62,19 @@ class c_categories extends BaseController {
             
             if (empty($err)) {
                 $this->m_categories->editCategory($id, $name_cate);
-                header("location: listCategories");
+                redirect('success', 'Sửa thông tin danh mục thành công', 'list-categories');
             }
         }
 
         // $title = "Sửa thông tin danh mục";
+        $_SESSION['title'] = "Sửa thông tin danh mục";
         $this->render("categories.v_editCategory", compact('category'));
     }
 
-    public function delete_category () {
-        $id = $_GET['id_category'];
+    public function delete_category ($id) {
         $this->m_categories->deleteCategory($id);
 
-        header("location:listCategories");
+        redirect("success", "Xóa danh mục thành công", "list-categories");
     }
 }
 ?>

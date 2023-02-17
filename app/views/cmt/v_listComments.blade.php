@@ -25,7 +25,7 @@
             <td>{{$value->created_time}}</td>
             <td>{{$value->updated_time}}</td>
             <td>
-                <a class="float-right" href="deleteProduct&id_product={{$value->id}}" 
+                <a class="float-right" href="deleteComment/id_comment={{ $value->id }}" 
                 onclick="return confirm('Bạn chắc chắn muốn xóa bình luận của {{$value->id_user}} vào {{$value->created_time}}')"
                 >Xóa</a>
             </td>

@@ -2,7 +2,7 @@
 
 @section('main')
 
-<form action="{{ BASE_URL.'form-edit-staff&id_staff='.$staff->id }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('form-edit-staff/id_staff='.$staff->id) }}" method="post" enctype="multipart/form-data">
     <table class="mx-auto">
         <tr>
             <td colspan="2" class="text-center font-bold">Sửa thông tin nhân viên</td>
@@ -31,7 +31,7 @@
         <tr>
             <td><label for="image_staff">Ảnh hiện tại</label></td>
             <td>
-                <img src="image/{{ $staff->image }}" width="100" alt="">
+                <img src="{{ route('image/'.$staff->image) }}" width="100" alt="">
                 <input type="hidden" value="{{ $staff->image }}" name="image_staff" id="">
             </td>
         </tr>
