@@ -76,7 +76,7 @@
 
         <tr>
             <td class="text-right" colspan="2">
-                <a href="listUsers">Danh sách khách hàng</a>
+                <a href="{{route('list-users')}}">Danh sách khách hàng</a>
             </td>
         </tr>
     </table>

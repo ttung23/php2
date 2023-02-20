@@ -1,31 +1,41 @@
 <?php
 namespace App\Models;
 
-class m_products extends db {
+use App\Models\BaseModel;
+
+class m_products extends BaseModel {
+    protected $table_name = "products";
+
     public function loadAllProducts () {
-        $sql = "SELECT * FROM products";
-        return $this->getData($sql);
+        $sql = "SELECT * FROM $this->table_name";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
     }
 
     public function loadOneProduct ($id) {
-        $sql = "SELECT * FROM products WHERE id = $id";
-        return $this->getData($sql, false);
+        $sql = "SELECT * FROM $this->table_name WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadRow([$id]);
     }
 
     public function addProduct ($name_product, $price_product, $quantity_product, $image_name, $id_cate, $description) {
-        $sql = "INSERT INTO `products` (`name_product`, `price`, `quantity`, `image`, `id_cate`, `description`) 
-        VALUES ('$name_product', '$price_product', '$quantity_product', '$image_name', '$id_cate', '$description')";
-        $this->getData($sql, false);
+        $sql = "INSERT INTO `$this->table_name` (`name_product`, `price`, `quantity`, `image`, `id_cate`, `description`) 
+        VALUES (?, ?, ?, ?, ?, ?)";
+        $this->setQuery($sql);
+        $this->execute([$name_product, $price_product, $quantity_product, $image_name, $id_cate, $description]);
     }
 
     public function editProduct ($id, $name_product, $price_product, $quantity_product, $image_name, $id_cate, $description) {
-        $sql = "UPDATE `products` SET `name_product` = '$name_product', `price` = '$price_product', `quantity` = '$quantity_product', `image` = '$image_name', `id_cate` = '$id_cate', `description` = '$description', `updated_time` = current_timestamp() WHERE products.id = $id";
-        $this->getData($sql, false);
+        $sql = "UPDATE `$this->table_name` SET `name_product` = ?, `price` = ?, `quantity` = ?, `image` = ?, `id_cate` = ?, `description` = ?, `updated_time` = current_timestamp() 
+        WHERE $this->table_name.id = ?";
+        $this->setQuery($sql);
+        $this->execute([$name_product, $price_product, $quantity_product, $image_name, $id_cate, $description, $id]);
     }
 
     public function deleteProduct ($id) {
-        $sql = "DELETE FROM products WHERE id = $id";
-        $this->getData($sql, false);
+        $sql = "DELETE FROM $this->table_name WHERE id = ?";
+        $this->setQuery($sql);
+        $this->execute([$id]);
     }
 }
 ?>

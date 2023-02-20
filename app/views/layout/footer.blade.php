@@ -1,5 +1,5 @@
 </div>
-@isset($_SESSION['success'])
+@if(isset($_SESSION['success']) && isset($_GET['msg']))
 <div class="alert inline-block fixed bottom-[50px] left-[50px] rounded px-4 py-2 bg-white">
     <div class="flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle-fill inline-block" viewBox="0 0 16 16">

@@ -1,37 +1,44 @@
 <?php
 namespace App\Models;
 
-class m_staffs extends db {
+use App\Models\BaseModel;
+
+class m_staffs extends BaseModel {
+    protected $table_name = "staffs";
+
     public function loadAllStaffs () {
-        $sql = "SELECT * FROM staffs";
-        return $this->getData($sql);
+        $sql = "SELECT * FROM $this->table_name";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
     }
 
     public function loadOneStaff ($id) {
-        $sql = "SELECT * FROM staffs WHERE id = $id";
-        return $this->getData($sql, false);
+        $sql = "SELECT * FROM $this->table_name WHERE id = ?";
+        $this->setQuery($sql);
+        return $this->loadRow([$id]);
     }
 
     public function addStaff ($name_staff, $gender, $image, $address, $phone, $salary, $so_gio_lam) {
-        $sql = "INSERT INTO `staffs` (`name`, `gender`, `image`, `address`, `phone`, `salary`, `so_gio_lam`) 
-        VALUES ('$name_staff', '$gender', '$image', '$address', '$phone', '$salary', '$so_gio_lam')";
-        $this->getData($sql, false);
+        $sql = "INSERT INTO `$this->table_name` (`name`, `gender`, `image`, `address`, `phone`, `salary`, `so_gio_lam`) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $this->setQuery($sql);
+        $this->execute([$name_staff, $gender, $image, $address, $phone, $salary, $so_gio_lam]);
     }
 
     public function editStaff ($id, $name_staff, $gender, $image, $address, $phone, $salary, $so_gio_lam) {
-        $sql = "UPDATE `staffs` SET `name` = '$name_staff', `gender` = $gender, `image` = '$image',
-        `address` = '$address', `phone` = '$phone', `so_gio_lam` = '$so_gio_lam',
-        `salary` = '$salary', `updated_time` = current_timestamp() 
-        WHERE staffs.id = $id";
+        $sql = "UPDATE `$this->table_name` SET `name` = ?, `gender` = ?, `image` = ?,
+        `address` = ?, `phone` = ?, `so_gio_lam` = ?,
+        `salary` = ?, `updated_time` = current_timestamp() 
+        WHERE staffs.id = ?";
+        $this->setQuery($sql);
 
-        // echo $sql;
-        // exit;
-        $this->getData($sql, false);
+        $this->execute([$name_staff, $gender, $image, $address, $phone, $salary, $so_gio_lam, $id]);
     }
 
     public function deleteStaff ($id) {
-        $sql = "DELETE FROM staffs WHERE id = $id";
-        $this->getData($sql, false);
+        $sql = "DELETE FROM $this->table_name WHERE id = ?";
+        $this->setQuery($sql);
+        $this->execute([$id]);
     }
 }
 ?>

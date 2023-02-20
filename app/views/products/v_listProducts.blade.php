@@ -40,8 +40,8 @@
             <td>{{$value->created_time}}</td>
             <td>{{$value->updated_time}}</td>
             <td>
-                <a href="editProduct/id_product={{$value->id}}">Sửa</a>
-                <a class="float-right" href="deleteProduct/id_product={{$value->id}}" 
+                <a href="edit-product/id_product={{$value->id}}">Sửa</a>
+                <a class="float-right" href="delete-product/id_product={{$value->id}}" 
                 onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm {{$value->name_product}}')"
                 >Xóa</a>
             </td>
@@ -54,7 +54,7 @@
 
     <tr>
         <td class="text-right" colspan="10">
-            <a href="addProduct">Thêm sản phẩm</a>
+            <a href="{{route('add-product')}}">Thêm sản phẩm</a>
         </td>
     </tr>
 </table>

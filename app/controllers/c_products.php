@@ -74,7 +74,7 @@ class c_products extends BaseController {
             } else {
                 $this->m_products->addProduct($name_product, $price_product, $quantity_product, $image_name, $id_cate, $description);
                 move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
-                redirect("success", "Thêm sản phẩm thành công", "listProducts");
+                redirect("success", "Thêm sản phẩm thành công", "list-products");
             }
         }
 
@@ -141,7 +141,7 @@ class c_products extends BaseController {
                     move_uploaded_file($image_product['tmp_name'], "image/".$image_name);
                 }
                 // header("location: listProducts");
-                redirect("success", "Sửa thông tin sản phẩm thành công", "listProducts");
+                redirect("success", "Sửa thông tin sản phẩm thành công", "list-products");
             }
         }
 
@@ -153,7 +153,7 @@ class c_products extends BaseController {
     public function delete_product ($id) {
         $this->m_products->deleteProduct($id);
 
-        redirect("success", "Xóa sản phẩm thành công", "listProducts");
+        redirect("success", "Xóa sản phẩm thành công", "list-products");
     }
 }
 ?>

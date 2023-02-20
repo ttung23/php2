@@ -69,7 +69,7 @@ class c_users extends BaseController {
                 }
                 
                 // header("location: listUsers");
-                redirect("success", "Sửa thông tin khách hàng thành công", "listUsers");
+                redirect("success", "Sửa thông tin khách hàng thành công", "list-users");
             }
         }
 
@@ -83,7 +83,7 @@ class c_users extends BaseController {
         $this->m_users->deleteUser($id);
 
         // header("location: listUsers");
-        redirect("success", "Xóa khách hàng thành công", "listUsers");
+        redirect("success", "Xóa khách hàng thành công", "list-users");
     }
 }
 ?>

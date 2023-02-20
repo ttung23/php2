@@ -71,7 +71,7 @@ class c_staffs extends BaseController {
                 $this->m_staffs->addStaff($name_staff, $gender, $image_name, $address_staff, $phone_staff, $salary, $so_gio_lam);
                 move_uploaded_file($image_staff['tmp_name'], "image/".$image_name);
                 // header("location: listStaffs");
-                redirect("success", "Thêm nhân viên thành công", "listStaffs");
+                redirect("success", "Thêm nhân viên thành công", "list-staffs");
             }
         }
 
@@ -144,7 +144,7 @@ class c_staffs extends BaseController {
                 }
                 
                 // header("location: listStaffs");
-                redirect("success", "Sửa thông tin nhân viên thành công", "listStaffs");
+                redirect("success", "Sửa thông tin nhân viên thành công", "list-staffs");
             }
         }
 

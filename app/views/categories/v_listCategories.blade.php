@@ -21,7 +21,7 @@
             <td>{{$value->created_time}}</td>
             <td>{{$value->updated_time}}</td>
             <td>
-                <a href="editCategory/id_category={{ $value->id }}">Sửa</a>
+                <a href="edit-category/id_category={{ $value->id }}">Sửa</a>
                 <a class="float-right" href="delete-category/id_category={{ $value->id }}" 
                 onclick="return confirm('Bạn chắc chắn muốn xóa danh mục {{ $value->name_cate }}')"
                 >Xóa</a>
@@ -35,7 +35,7 @@
 
     <tr>
         <td class="text-right" colspan="10">
-            <a href="addCategory">Thêm danh mục</a>
+            <a href="{{route('add-category')}}">Thêm danh mục</a>
         </td>
     </tr>
 </table>

@@ -13,9 +13,6 @@ class c_comments extends BaseController {
     public function list_comments () {
         $comments = $this->m_comments->loadAllComments();
 
-        // $title = "Danh sách bình luận";
-        // $view = "./app/views/cmt/v_listComments.php";
-        // include "./templates/layout.php";
         $_SESSION['title'] = "Danh sách bình luận";
         $this->render('cmt.v_listComments', compact('comments'));
     }
@@ -23,8 +20,7 @@ class c_comments extends BaseController {
     public function delete_cmt ($id) {
 
         $this->m_comments->deleteComment($id);
-        // header("location: listComments");
-        redirect("success", "Xóa bình luận thành công", "listComments");
+        redirect("success", "Xóa bình luận thành công", "list-comments");
     }
 }
 ?>

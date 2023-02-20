@@ -34,8 +34,8 @@
             <td>{{$value->created_time}}</td>
             <td>{{$value->updated_time}}</td>
             <td>
-                <a href="editStaff/id_staff={{$value->id}}">Sửa</a>
-                <a class="float-right" href="deleteStaff/id_staff={{$value->id}}" 
+                <a href="edit-staff/id_staff={{$value->id}}">Sửa</a>
+                <a class="float-right" href="delete-staff/id_staff={{$value->id}}" 
                 onclick="return confirm('Bạn chắc chắn muốn xóa nhân viên {{$value->name}}')"
                 >Xóa</a>
             </td>
@@ -48,7 +48,7 @@
 
     <tr>
         <td class="text-right" colspan="11">
-            <a href="addStaff">Thêm nhân viên</a>
+            <a href="{{route('add-staff')}}">Thêm nhân viên</a>
         </td>
     </tr>
 </table>

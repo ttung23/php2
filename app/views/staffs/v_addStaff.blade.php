@@ -71,7 +71,7 @@
 
         <tr>
             <td class="text-right" colspan="2">
-                <a href="listStaffs">Danh sách nhân viên</a>
+                <a href="{{route('list-staffs')}}">Danh sách nhân viên</a>
             </td>
         </tr>
     </table>
