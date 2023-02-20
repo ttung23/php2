@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 14, 2023 lúc 09:17 AM
+-- Thời gian đã tạo: Th2 20, 2023 lúc 04:35 PM
 -- Phiên bản máy phục vụ: 10.4.24-MariaDB
 -- Phiên bản PHP: 8.1.6
 
@@ -42,8 +42,9 @@ INSERT INTO `categories` (`id`, `name_cate`, `created_time`, `updated_time`) VAL
 (1, 'Điện thoại', '2023-02-03 00:16:02', '2023-02-03 00:16:02'),
 (2, 'Máy tính', '2023-02-03 00:16:02', '2023-02-03 00:16:02'),
 (5, 'adgad', '2023-02-14 12:12:17', '2023-02-14 12:12:17'),
-(6, 'gadhhhhahdhah', '2023-02-14 12:13:39', '2023-02-14 12:16:08'),
-(7, 'jdgadga', '2023-02-14 12:14:47', '2023-02-14 12:16:02');
+(29, 'aabb', '2023-02-17 20:59:45', '2023-02-17 22:02:01'),
+(35, 'them1', '2023-02-17 22:02:08', '2023-02-17 22:02:08'),
+(38, 'aa', '2023-02-20 21:50:32', '2023-02-20 21:50:32');
 
 -- --------------------------------------------------------
 
@@ -66,9 +67,7 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `content`, `id_user`, `id_product`, `created_time`, `updated_time`) VALUES
 (1, 'aa', 1, 1, '2023-02-03 21:56:13', '2023-02-03 21:56:13'),
-(2, 'aa', 1, 1, '2023-02-03 21:56:16', '2023-02-03 21:56:16'),
-(3, 'aa', 1, 1, '2023-02-03 21:56:22', '2023-02-03 21:56:22'),
-(4, 'aa', 1, 1, '2023-02-03 21:56:26', '2023-02-03 21:56:26');
+(5, 'xin', 4, 1, '2023-02-18 07:27:30', '2023-02-18 07:27:30');
 
 -- --------------------------------------------------------
 
@@ -93,13 +92,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name_product`, `price`, `quantity`, `image`, `id_cate`, `description`, `created_time`, `updated_time`) VALUES
+(1, 'ip12', 11, 1, 'ip', 1, 'dien thoai', '2023-02-20 21:09:39', '2023-02-20 21:09:39'),
 (3, 'iphone', 2700000, 1, 'iphone', 1, 'aaaaa', '2023-02-02 22:43:57', '2023-02-02 22:43:57'),
 (4, 'iphone', 2700000, 1, 'iphone', 2, 'aaaaa', '2023-02-02 22:44:02', '2023-02-02 22:44:02'),
 (7, 'Laptop Acer Swift 3', 10000000, 1, 'laptop', 2, 'laptop ngon', '2023-02-03 07:54:00', '2023-02-03 07:54:00'),
 (17, 'aaa', 1, 1, 'tung2.png', 1, 'bb', '2023-02-14 11:31:09', '2023-02-14 11:31:09'),
 (19, 'fagag', 1234567890, 1, 'tung2.png', 1, 'gadhaga', '2023-02-14 11:50:42', '2023-02-14 12:07:03'),
-(20, 'ghaha', 1, 2, 'tung2.png', 2, 'adgadg', '2023-02-14 11:58:41', '2023-02-14 12:07:13'),
-(22, 'aabb', 1, 1, 'IMG_20220329_094558.jpg', 1, '1', '2023-02-14 14:57:02', '2023-02-14 15:02:55');
+(26, 'them1', 2, 1, 'tung2.png', 1, 'them 1', '2023-02-20 21:43:22', '2023-02-20 21:43:22'),
+(27, 'sua', 23, 12, 'received_5472438276117315.jpeg', 1, 'sua', '2023-02-20 21:45:49', '2023-02-20 21:48:04');
 
 -- --------------------------------------------------------
 
@@ -131,8 +131,10 @@ INSERT INTO `staffs` (`id`, `name`, `gender`, `image`, `address`, `phone`, `sala
 (5, 'aa', b'1', 'IMG_20220329_094558.jpg', 'agaege', '1234567891', 10, 1, '2023-02-06 21:15:25', '2023-02-06 23:31:13'),
 (8, 'aa', b'0', 'IMG_20220329_094611.jpg', 'hà nộii', '0396007890', 10, 2, '2023-02-06 21:53:30', '2023-02-06 23:34:47'),
 (9, 'aa', b'1', 'tung2.png', 'hà nội', '0396007890', 101, 0, '2023-02-14 12:20:28', '2023-02-14 12:20:28'),
-(10, 'aa', b'1', 'received_5472438276117315.jpeg', 'hà nội', '0396007890', 101, 0, '2023-02-14 12:20:29', '2023-02-14 15:15:51'),
-(15, 'aabb', b'1', 'IMG_20220329_094558.jpg', 'hà nội', '0396007890', 22, 0, '2023-02-14 15:12:00', '2023-02-14 15:16:29');
+(10, 'tung', b'1', 'received_5472438276117315.jpeg', 'hà nội', '0396007890', 101, 100, '2023-02-14 12:20:29', '2023-02-17 22:14:08'),
+(17, 'aa', b'1', 'received_5472438276117315.jpeg', 'hà nội', '0396007890', 11, 0, '2023-02-20 21:36:46', '2023-02-20 21:36:46'),
+(18, 'sua1', b'1', 'tung2.png', 'hà nội', '0396007890', 12, 11, '2023-02-20 22:20:21', '2023-02-20 22:22:24'),
+(19, 'them2', b'1', 'logofpt.png', 'hà nội', '0396007890', 11, 0, '2023-02-20 22:24:33', '2023-02-20 22:24:33');
 
 -- --------------------------------------------------------
 
@@ -157,9 +159,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `gender`, `image`, `address`, `phone`, `created_time`, `updated_time`) VALUES
 (1, 'aa', b'1', 'â', 'aa', '123', '2023-02-06 23:39:22', '2023-02-06 23:39:22'),
-(2, 'aa', b'1', 'â', 'aa', '123', '2023-02-06 23:39:25', '2023-02-06 23:39:25'),
-(3, 'aa', b'1', 'â', 'aa', '123', '2023-02-06 23:39:27', '2023-02-06 23:39:27'),
-(4, 'aabb', b'0', 'IMG_20220329_094558.jpg', 'aa', '1233567891', '2023-02-06 23:39:30', '2023-02-14 15:07:48');
+(4, 'tung2', b'1', 'received_5472438276117315.jpeg', 'aa', '1233567891', '2023-02-06 23:39:30', '2023-02-20 21:35:41'),
+(7, 'tien', b'1', 'tung2.png', 'ha noi', '1234567890', '2023-02-20 21:53:34', '2023-02-20 21:53:34'),
+(8, 'tien', b'1', 'tung2.png', 'ha noi', '1234567890', '2023-02-20 21:53:37', '2023-02-20 21:53:37'),
+(9, 'tien', b'1', 'tung2.png', 'ha noi', '1234567890', '2023-02-20 21:53:41', '2023-02-20 21:53:41');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -203,31 +206,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT cho bảng `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT cho bảng `staffs`
 --
 ALTER TABLE `staffs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
